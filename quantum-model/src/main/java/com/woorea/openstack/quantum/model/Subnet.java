@@ -2,8 +2,11 @@ package com.woorea.openstack.quantum.model;
 
 import java.io.Serializable;
 import java.util.List;
+import org.codehaus.jackson.annotate.JsonCreator;
+import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.codehaus.jackson.annotate.JsonValue;
 import org.codehaus.jackson.map.annotate.JsonRootName;
 
 @SuppressWarnings("serial")
@@ -13,7 +16,7 @@ public class Subnet implements Serializable {
 
     private String name;
     @JsonProperty("enable_dhcp")
-    private boolean enableDHCP;
+    private Boolean enableDHCP;
     @JsonProperty("network_id")
     private String networkId;
     @JsonProperty("tenant_id")
@@ -40,10 +43,12 @@ public class Subnet implements Serializable {
             this.code = code;
         }
 
+        @JsonValue
         public int code() {
             return code;
         }
 
+        @JsonCreator
         public static IpVersion valueOf(int value) {
             for (IpVersion ipVersion : IpVersion.values()) {
                 if (ipVersion.code() == value) {
@@ -76,6 +81,7 @@ public class Subnet implements Serializable {
     /**
      * @return the enableDHCP
      */
+    @JsonIgnore
     public boolean isEnableDHCP() {
         return enableDHCP;
     }
@@ -90,7 +96,7 @@ public class Subnet implements Serializable {
     /**
      * @param enableDHCP the enableDHCP to set
      */
-    public void setEnableDHCP(boolean enableDHCP) {
+    public void setEnableDHCP(Boolean enableDHCP) {
         this.enableDHCP = enableDHCP;
     }
 
@@ -209,6 +215,7 @@ public class Subnet implements Serializable {
     /**
      * @return the id
      */
+    @JsonIgnore
     public String getId() {
         return id;
     }
@@ -216,6 +223,7 @@ public class Subnet implements Serializable {
     /**
      * @param id the id to set
      */
+    @JsonProperty
     public void setId(String id) {
         this.id = id;
     }
