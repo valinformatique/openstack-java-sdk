@@ -2,7 +2,6 @@ package com.woorea.openstack.quantum.model;
 
 import java.io.Serializable;
 import java.util.List;
-
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
@@ -14,31 +13,21 @@ import org.codehaus.jackson.map.annotate.JsonRootName;
 public class Network implements Serializable {
 
     private String status;
-
     private List<String> subnets;
-
     private String name;
-
     @JsonProperty("admin_state_up")
     private Boolean adminStateUp;
-
     @JsonProperty("tenant_id")
     private String tenantId;
-
     @JsonProperty("provider:physical_network")
     private String providerPhysicalNetwork;
-
     @JsonProperty("provider:network_type")
     private String providerNetworkType;
-
     @JsonProperty("provider:segmentation_id")
     private Integer providerSegmentationId;
-
     @JsonProperty("router:external")
     private String routerExternal;
-
     private String id;
-
     private String shared;
 
     /**
@@ -50,8 +39,7 @@ public class Network implements Serializable {
     }
 
     /**
-     * @param status
-     *            the status to set
+     * @param status the status to set
      */
     @JsonProperty
     public void setStatus(String status) {
@@ -67,8 +55,7 @@ public class Network implements Serializable {
     }
 
     /**
-     * @param subnets
-     *            the subnets to set
+     * @param subnets the subnets to set
      */
     @JsonProperty
     public void setSubnets(List<String> subnets) {
@@ -83,8 +70,7 @@ public class Network implements Serializable {
     }
 
     /**
-     * @param name
-     *            the name to set
+     * @param name the name to set
      */
     public void setName(String name) {
         this.name = name;
@@ -101,8 +87,7 @@ public class Network implements Serializable {
     }
 
     /**
-     * @param providerPhyNet
-     *            the providerPhyNet to set
+     * @param providerPhyNet the providerPhyNet to set
      * @deprecated
      */
     @Deprecated
@@ -124,8 +109,7 @@ public class Network implements Serializable {
     }
 
     /**
-     * @param adminStateUp
-     *            the adminStateUp to set
+     * @param adminStateUp the adminStateUp to set
      */
     public void setAdminStateUp(Boolean adminStateUp) {
         this.adminStateUp = adminStateUp;
@@ -139,8 +123,7 @@ public class Network implements Serializable {
     }
 
     /**
-     * @param tenantId
-     *            the tenantId to set
+     * @param tenantId the tenantId to set
      */
     public void setTenantId(String tenantId) {
         this.tenantId = tenantId;
@@ -157,8 +140,7 @@ public class Network implements Serializable {
     }
 
     /**
-     * @param netType
-     *            the netType to set
+     * @param netType the netType to set
      * @deprecated
      */
     @Deprecated
@@ -175,8 +157,7 @@ public class Network implements Serializable {
     }
 
     /**
-     * @param routerExternal
-     *            the routerExternal to set
+     * @param routerExternal the routerExternal to set
      */
     public void setRouterExternal(String routerExternal) {
         this.routerExternal = routerExternal;
@@ -191,8 +172,7 @@ public class Network implements Serializable {
     }
 
     /**
-     * @param id
-     *            the id to set
+     * @param id the id to set
      */
     @JsonProperty
     public void setId(String id) {
@@ -207,8 +187,7 @@ public class Network implements Serializable {
     }
 
     /**
-     * @param shared
-     *            the shared to set
+     * @param shared the shared to set
      */
     public void setShared(String shared) {
         this.shared = shared;
@@ -225,8 +204,7 @@ public class Network implements Serializable {
     }
 
     /**
-     * @param providerSegID
-     *            the providerSegID to set
+     * @param providerSegID the providerSegID to set
      * @deprecated
      */
     @Deprecated
@@ -267,9 +245,9 @@ public class Network implements Serializable {
     @Override
     public String toString() {
         return "Network [id=" + id + ", name=" + name + ", subnets="
-                + subnets + ", status=" + status + ", admin_state_up=" + adminStateUp + ", tenant_id=" +
-                tenantId + ", shared=" + shared + ", provider:physical_network=" + providerPhysicalNetwork +
-                ", provider:network_type=" + providerNetworkType + ", router:external=" + routerExternal +
-                ", provider:segmentation_id=" + providerSegmentationId + "]";
+                + subnets + ", status=" + status + ", admin_state_up=" + adminStateUp + ", tenant_id="
+                + tenantId + ", shared=" + shared + ", provider:physical_network=" + providerPhysicalNetwork
+                + ", provider:network_type=" + providerNetworkType + ", router:external=" + routerExternal
+                + ", provider:segmentation_id=" + providerSegmentationId + "]";
     }
 }

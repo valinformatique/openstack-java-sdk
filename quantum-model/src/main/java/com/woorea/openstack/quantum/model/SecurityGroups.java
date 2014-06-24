@@ -5,33 +5,37 @@ import java.util.Iterator;
 import java.util.List;
 import org.codehaus.jackson.annotate.JsonProperty;
 
-@SuppressWarnings("serial")
-public class Ports implements Iterable<Port>, Serializable {
+/**
+ * Model for Security Groups
+ *
+ * @author VAL Informatique
+ */
+public class SecurityGroups implements Iterable<SecurityGroup>, Serializable {
 
-    @JsonProperty("ports")
-    private List<Port> list;
+    @JsonProperty("security_groups")
+    private List<SecurityGroup> list;
 
     /**
      * @return the list
      */
-    public List<Port> getList() {
+    public List<SecurityGroup> getList() {
         return list;
     }
 
     /**
      * @param list the list to set
      */
-    public void setList(List<Port> list) {
+    public void setList(List<SecurityGroup> list) {
         this.list = list;
     }
 
     @Override
-    public Iterator<Port> iterator() {
+    public Iterator<SecurityGroup> iterator() {
         return list.iterator();
     }
 
     @Override
     public String toString() {
-        return "Ports [list=" + list + "]";
+        return "Security groups [list=" + list + "]";
     }
 }

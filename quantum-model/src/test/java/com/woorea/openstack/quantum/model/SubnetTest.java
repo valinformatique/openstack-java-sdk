@@ -67,7 +67,7 @@ public class SubnetTest {
         subnet.setCidr(CIDR);
         subnet.setDnsNames(Arrays.asList(DNS_SERVER));
         subnet.setEnableDHCP(ENABLE_DHCP);
-        subnet.setIpversion(IP_VERSION);
+        subnet.setIpversion(IP_VERSION.code());
         subnet.setGw(GATEWAY);
         subnet.setHostRoutes(Arrays.asList(HOST_ROUTE));
         subnet.setName(NAME);
@@ -117,7 +117,7 @@ public class SubnetTest {
         assertThat(subnet.getCidr(), is(equalTo(CIDR)));
         assertThat(subnet.getDnsNames(), hasItem(equalTo(DNS_SERVER)));
         assertThat(subnet.isEnableDHCP(), is(equalTo(ENABLE_DHCP)));
-        assertThat(subnet.getIpversion(), is(equalTo(IP_VERSION)));
+        assertThat(subnet.getIpversion(), is(equalTo(IP_VERSION.code())));
         assertThat(subnet.getGw(), is(equalTo(GATEWAY)));
         assertThat(subnet.getHostRoutes(), hasItem(equalTo(HOST_ROUTE)));
         assertThat(subnet.getName(), is(equalTo(NAME)));
