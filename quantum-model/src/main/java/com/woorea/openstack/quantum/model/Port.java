@@ -2,7 +2,6 @@ package com.woorea.openstack.quantum.model;
 
 import java.io.Serializable;
 import java.util.List;
-
 import org.codehaus.jackson.annotate.JsonIgnore;
 import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
@@ -17,7 +16,6 @@ public class Port implements Serializable {
 
         @JsonProperty("ip_address")
         private String address;
-
         @JsonProperty("subnet_id")
         private String subnetId;
 
@@ -29,8 +27,7 @@ public class Port implements Serializable {
         }
 
         /**
-         * @param address
-         *            the address to set
+         * @param address the address to set
          */
         public void setAddress(String address) {
             this.address = address;
@@ -44,8 +41,7 @@ public class Port implements Serializable {
         }
 
         /**
-         * @param subnetId
-         *            the subnetId to set
+         * @param subnetId the subnetId to set
          */
         public void setSubnetId(String subnetId) {
             this.subnetId = subnetId;
@@ -55,36 +51,24 @@ public class Port implements Serializable {
         public String toString() {
             return "ip_addresses [ip_address=" + address + ", subnet_id=" + subnetId + "]";
         }
-
     }
-
     @JsonProperty("admin_state_up")
     private Boolean adminStateUp;
-
     @JsonProperty("device_id")
     private String deviceId;
-
     @JsonProperty("device_owner")
     private String deviceOwner;
-
     @JsonProperty("fixed_ips")
     private List<Ip> list;
-
     private String id;
-
     @JsonProperty("mac_address")
     private String macAddress;
-
     private String name;
-
     @JsonProperty("network_id")
     private String networkId;
-
     private String status;
-
     @JsonProperty("tenant_id")
     private String tenantId;
-
     @JsonProperty("security_groups")
     private List<String> securityGroups;
 
@@ -96,8 +80,7 @@ public class Port implements Serializable {
     }
 
     /**
-     * @param adminStateUp
-     *            the adminStateUp to set
+     * @param adminStateUp the adminStateUp to set
      */
     public void setAdminStateUp(Boolean adminStateUp) {
         this.adminStateUp = adminStateUp;
@@ -111,8 +94,7 @@ public class Port implements Serializable {
     }
 
     /**
-     * @param deviceId
-     *            the deviceId to set
+     * @param deviceId the deviceId to set
      */
     public void setDeviceId(String deviceId) {
         this.deviceId = deviceId;
@@ -126,8 +108,7 @@ public class Port implements Serializable {
     }
 
     /**
-     * @param deviceOwner
-     *            the deviceOwner to set
+     * @param deviceOwner the deviceOwner to set
      */
     public void setDeviceOwner(String deviceOwner) {
         this.deviceOwner = deviceOwner;
@@ -141,8 +122,7 @@ public class Port implements Serializable {
     }
 
     /**
-     * @param list
-     *            the list to set
+     * @param list the list to set
      */
     public void setList(List<Ip> list) {
         this.list = list;
@@ -157,8 +137,7 @@ public class Port implements Serializable {
     }
 
     /**
-     * @param id
-     *            the id to set
+     * @param id the id to set
      */
     @JsonProperty
     public void setId(String id) {
@@ -173,8 +152,7 @@ public class Port implements Serializable {
     }
 
     /**
-     * @param macAddress
-     *            the macAddress to set
+     * @param macAddress the macAddress to set
      */
     public void setMacAddress(String macAddress) {
         this.macAddress = macAddress;
@@ -188,8 +166,7 @@ public class Port implements Serializable {
     }
 
     /**
-     * @param name
-     *            the name to set
+     * @param name the name to set
      */
     public void setName(String name) {
         this.name = name;
@@ -203,8 +180,7 @@ public class Port implements Serializable {
     }
 
     /**
-     * @param networkId
-     *            the networkId to set
+     * @param networkId the networkId to set
      */
     public void setNetworkId(String networkId) {
         this.networkId = networkId;
@@ -219,8 +195,7 @@ public class Port implements Serializable {
     }
 
     /**
-     * @param status
-     *            the status to set
+     * @param status the status to set
      */
     @JsonProperty
     public void setStatus(String status) {
@@ -235,8 +210,7 @@ public class Port implements Serializable {
     }
 
     /**
-     * @param tenantId
-     *            the tenantId to set
+     * @param tenantId the tenantId to set
      */
     public void setTenantId(String tenantId) {
         this.tenantId = tenantId;
@@ -250,8 +224,7 @@ public class Port implements Serializable {
     }
 
     /**
-     * @param securityGroups
-     *            IDs of security groups to associate to the port
+     * @param securityGroups IDs of security groups to associate to the port
      */
     public void setSecurityGroups(List<String> securityGroups) {
         this.securityGroups = securityGroups;
