@@ -1,12 +1,13 @@
 package com.woorea.openstack.nova.api;
 
-import java.util.Map;
-
 import com.woorea.openstack.base.client.Entity;
 import com.woorea.openstack.base.client.HttpMethod;
 import com.woorea.openstack.base.client.OpenStackClient;
 import com.woorea.openstack.base.client.OpenStackRequest;
+import com.woorea.openstack.nova.model.LiveMigrationSet;
 import com.woorea.openstack.nova.model.Metadata;
+import com.woorea.openstack.nova.model.SecurityGroupForAdd;
+import com.woorea.openstack.nova.model.SecurityGroupForRemove;
 import com.woorea.openstack.nova.model.Server;
 import com.woorea.openstack.nova.model.Server.Addresses;
 import com.woorea.openstack.nova.model.ServerAction.ChangePassword;
@@ -31,10 +32,12 @@ import com.woorea.openstack.nova.model.ServerAction.Unlock;
 import com.woorea.openstack.nova.model.ServerAction.Unpause;
 import com.woorea.openstack.nova.model.ServerAction.Unrescue;
 import com.woorea.openstack.nova.model.ServerAction.VncConsole;
+import com.woorea.openstack.nova.model.ServerDiagnostics;
 import com.woorea.openstack.nova.model.ServerForCreate;
 import com.woorea.openstack.nova.model.Servers;
 import com.woorea.openstack.nova.model.VolumeAttachment;
 import com.woorea.openstack.nova.model.VolumeAttachments;
+import java.util.Map;
 
 public class ServersResource {
 
@@ -248,10 +251,10 @@ public class ServersResource {
         return new RevertResizeAction(serverId);
     }
 
-    public class CreateImageAction extends Action<Void> {
+    public class CreateImageAction extends Action<Server> {
 
         public CreateImageAction(String id, CreateImage createImage) {
-            super(id, Entity.json(createImage), Void.class);
+            super(id, Entity.json(createImage), Server.class);
         }
     }
 
@@ -491,5 +494,86 @@ public class ServersResource {
 
     public ShowVolumeAttachment showVolumeAttachment(String serverId, String volumeAttachmentId) {
         return new ShowVolumeAttachment(serverId, volumeAttachmentId);
+    }
+
+    public Diagnostics getServerDiagnostics(String id) {
+        return new Diagnostics(id);
+    }
+
+    public class Diagnostics extends OpenStackRequest<ServerDiagnostics> {
+
+        public Diagnostics(String id) {
+
+            super(CLIENT, HttpMethod.GET, new StringBuilder("/servers/")
+                    .append(id).append("/diagnostics"), null,
+                    ServerDiagnostics.class);
+        }
+    }
+
+    public LiveMigration liveMigration(LiveMigrationSet liveMigrationSet) {
+        return new LiveMigration(liveMigrationSet);
+    }
+
+    public GetServerForMigration getServerForMigration(
+            LiveMigrationSet liveMigrationSet) {
+        return new GetServerForMigration(liveMigrationSet);
+    }
+
+    public class GetServerForMigration extends OpenStackRequest<Server> {
+
+        public GetServerForMigration(LiveMigrationSet liveMigrationSet) {
+
+            super(CLIENT, HttpMethod.GET, new StringBuilder("/servers/")
+                    .append(liveMigrationSet.getServerId()), null, Server.class);
+
+        }
+    }
+
+    public class LiveMigration extends OpenStackRequest<Void> {
+
+        LiveMigration(LiveMigrationSet liveMigrationSet) {
+            super(CLIENT, HttpMethod.POST, new StringBuilder("/servers/")
+                    .append(liveMigrationSet.getServerId()).append("/action"),
+                    Entity.json(liveMigrationSet), Void.class);
+
+        }
+    }
+
+    public AddSecurityGroup addSecurityGroup(String serverId, String securityGroupName) {
+        SecurityGroupForAdd groupToAdd = new SecurityGroupForAdd(securityGroupName);
+        return new AddSecurityGroup(groupToAdd, serverId);
+    }
+
+    public class AddSecurityGroup extends OpenStackRequest<SecurityGroupForAdd> {
+
+        public AddSecurityGroup(SecurityGroupForAdd groupToAdd, String serverId) {
+            super(CLIENT, HttpMethod.POST, new StringBuilder("/servers/")
+                    .append(serverId).append("/action"), Entity.json(groupToAdd), SecurityGroupForAdd.class);
+        }
+    }
+
+    public RemoveSecurityGroup removeSecurityGroup(String serverId, String securityGroupName) {
+        SecurityGroupForRemove groupToRemove = new SecurityGroupForRemove(securityGroupName);
+        return new RemoveSecurityGroup(groupToRemove, serverId);
+    }
+
+    public class RemoveSecurityGroup extends OpenStackRequest<SecurityGroupForRemove> {
+
+        public RemoveSecurityGroup(SecurityGroupForRemove groupToRemove, String serverId) {
+            super(CLIENT, HttpMethod.POST, new StringBuilder("/servers/")
+                    .append(serverId).append("/action"), Entity.json(groupToRemove), SecurityGroupForRemove.class);
+        }
+    }
+
+    public CreateImageAction createSnapshot(String aServerId, String aName) {
+        return new CreateImageAction(aServerId, new CreateImage(aName));
+    }
+
+    public RebuildAction restoreSnapshot(Server aServer, String aSnapshotId) {
+        Rebuild lRebuild = new Rebuild();
+        lRebuild.setName(aServer.getName());
+        lRebuild.setAdminPass(aServer.getAdminPass());
+        lRebuild.setImageRef(aSnapshotId);
+        return new RebuildAction(aServer.getId(), lRebuild);
     }
 }
