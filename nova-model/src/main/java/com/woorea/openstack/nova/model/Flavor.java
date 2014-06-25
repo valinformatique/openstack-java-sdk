@@ -10,9 +10,9 @@ public class Flavor implements Serializable {
 
     private String id;
     private String name;
-    private String vcpus;
+    private Integer vcpus;
     private Integer ram;
-    private String disk;
+    private Integer disk;
     @JsonProperty("OS-FLV-EXT-DATA:ephemeral")
     private Integer ephemeral;
     private String swap;
@@ -59,14 +59,14 @@ public class Flavor implements Serializable {
     /**
      * @return the vcpus
      */
-    public String getVcpus() {
+    public Integer getVcpus() {
         return vcpus;
     }
 
     /**
      * @param vcpus the vcpus to set
      */
-    public void setVcpus(String vcpus) {
+    public void setVcpus(Integer vcpus) {
         this.vcpus = vcpus;
     }
 
@@ -87,14 +87,14 @@ public class Flavor implements Serializable {
     /**
      * @return the disk
      */
-    public String getDisk() {
+    public Integer getDisk() {
         return disk;
     }
 
     /**
      * @param disk the disk to set
      */
-    public void setDisk(String disk) {
+    public void setDisk(Integer disk) {
         this.disk = disk;
     }
 
