@@ -10,7 +10,7 @@ import com.woorea.openstack.cinder.api.VolumesResource;
  * OpenStack Cinder Client 
  * 
  * Reference:
- * http://docs.openstack.org/api/openstack-block-storage/2.0/content/Preface.html
+ * http://developer.openstack.org/api-ref-blockstorage-v2.html
  *
  * @author VAL Informatique
  */
