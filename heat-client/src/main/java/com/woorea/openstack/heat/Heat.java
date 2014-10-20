@@ -4,7 +4,7 @@ import com.woorea.openstack.base.client.OpenStackClient;
 import com.woorea.openstack.base.client.OpenStackClientConnector;
 
 /**
- * Reference: http://api.openstack.org/api-ref-orchestration.html
+ * Reference: http://developer.openstack.org/api-ref-orchestration-v1.html
  */
 public class Heat extends OpenStackClient {
 
