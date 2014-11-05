@@ -8,7 +8,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
 /**
  * Model for Hypervisors
  *
- * @author SF
+ * @author VAL Informatique
  */
 public class Hypervisors implements Iterable<Hypervisor>, Serializable {
 
