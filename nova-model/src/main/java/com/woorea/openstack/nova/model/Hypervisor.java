@@ -48,7 +48,9 @@ public class Hypervisor implements Serializable {
     @JsonProperty("vcpus_used")
     private Integer vcpusUsed;
     @JsonProperty("service")
-    private Map<String, String> service = new HashMap<String, String>();
+    private Map<String, String> service = new HashMap<>();
+    @JsonProperty("host_ip")
+    private String hostIp;
 
     public String getCpuInfo() {
         return cpuInfo;
@@ -200,6 +202,14 @@ public class Hypervisor implements Serializable {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getHostIp() {
+        return hostIp;
+    }
+
+    public void setHostIp(String hostIp) {
+        this.hostIp = hostIp;
     }
 
     /* (non-Javadoc)
